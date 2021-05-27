@@ -45,8 +45,12 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
 	private BufferedImage icon;
   static JLabel agIMG;
   static JTextArea larea,Rarea;
-  static ImageIcon ag1Icon = new ImageIcon("rayquaza.png");
-  static ImageIcon ag2Icon = new ImageIcon("pika.png");
+  static ImageIcon ag1Icon = new ImageIcon("MedinasaurIcon.png");
+  static ImageIcon ag2Icon = new ImageIcon("PenisaurIcon.png");
+  static ImageIcon ag3Icon = new ImageIcon("PegasusIcon.png");
+  static ImageIcon ag4Icon = new ImageIcon("IceguinIcon.png");
+  static ImageIcon ag5Icon = new ImageIcon("FinalityIcon.png");
+  static ImageIcon ag6Icon = new ImageIcon("CharChimpIcon.png");
 /*
   private ImageIcon SportBlack = new ImageIcon("SportBlack.jpeg");
   private ImageIcon SportBlue = new ImageIcon("SportBlue.jpeg");
@@ -73,6 +77,9 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
 	public Main(Aggie player1, Aggie player2) {
 		p1 = player1;
 		p2 = player2;
+		
+		p1.setAnimations(-1, 1);
+		p2.setAnimations(1, -1);
 		
 		setSize(width,height);  // creating panel to place on frame
 		setLayout(null);
@@ -252,35 +259,52 @@ Container c = new Container();
 			}
 		}
 		catch(Exception e) {}
-		Aggie a1 = new Medinasaur(new Sprite("rayquaza.png"),100,"Medinasuar",50,50,50,125,ag1Icon);
-		Aggie a2 = new Penisaur(new Sprite("pika.png"),100,"Penisaur",75,80,50,70,ag2Icon);
-    // params(Sprite, dimX, dimY, size, name, damage, speed, defense, health)
-		Aggie[] aggieList = {a1,a2};
-    AggieLists = aggieList;
+		
+		// params(Sprite, name, damage, speed, defense, health)
+		Aggie [] aggieList = {
+				new Medinasaur(new Sprite("Medinasaur1.png"),"Medinasaur",50,50,50,125,ag1Icon),
+				new Penisaur(new Sprite("Penisaur1.png"),"Penisaur",75,80,50,70,ag2Icon),
+				new Finality(new Sprite("Finality1.png"),"Finality",125, 75,15,60,ag5Icon),
+				new Charchimp(new Sprite("Charchimp1.png"),"Charchimp",100, 40, 60, 75,ag6Icon),
+				new Iceguin(new Sprite("Iceguin1.png"),"Iceguin",125, 40, 35, 75,ag4Icon),
+				new Pegasus(new Sprite("Pegasus1.png"),"Pegasus",70,50,70,80,ag3Icon)
+		};
+		AggieLists = aggieList;
+
 		// params(Sprite, dimX, dimY, size, name, damage, speed, defense, health)
 		System.out.println("Select the first Aggie\n");
 		for(int i = 0; i < aggieList.length;i++) {
 			System.out.println(i+1+ ") " + aggieList[i].getName());
 		}
 		Aggie player1 = aggieList[kb.nextInt()-1];
+		for(Aggie i : aggieList) {
+			if(player1 == i)
+				i.setSprite(i.getName() + "1.png" );
+		}
+		
 		
 		System.out.println("Select the second Aggie");
 		for(int i = 0; i < aggieList.length;i++) {
 			System.out.println(i+1 + ") " + aggieList[i].getName());
 		}
 		Aggie player2 = aggieList[kb.nextInt()-1];
+		for(Aggie i : aggieList) {
+			if(player2 == i)
+				i.setSprite(i.getName() + "2.png" );
+		}
 		
 		frame = new JFrame();
 		frame.setSize(width,height);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
+		frame.setResizable(false);
+        
     new Main("aggieString");
 		
 		player1.setXpos(250);
 		player1.setYpos(20);
 		
-		player2.setXpos(60);
+		player2.setXpos(50);
 		player2.setYpos(160);
 		
 		frame.add(new Main(player1, player2));
@@ -331,7 +355,6 @@ Container c = new Container();
 			} catch (InterruptedException e1) {}
 			timer.stop();
 		}
-
 	}
 	
 	public static void updateTable() {

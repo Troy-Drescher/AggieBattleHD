@@ -21,10 +21,12 @@ public class AbilityButton extends JButton implements ActionListener{
 	
 	private final int dmg = 0,
 				spd = 1,
-				def = 2;
+				def = 2,
+				turnLost = 3,
+				trueDMG = 4,
+				health = 5;
 	
-	private final int turnLost = 0,
-					  trueDMG = 1;
+	private int initialDEF,initialATK,initialSPD; // defender initial stats (used for debuffs)
 	
 	static int turnCounter;
 	static Aggie initialAttacker;
@@ -49,34 +51,39 @@ public class AbilityButton extends JButton implements ActionListener{
 		type = ability.getType();
 		this.ability = ability;
 		timer = new Timer(10,this);
-		
 	}
 	
-	public boolean miss() { // fix chance and miss rates
+	public boolean miss(float rng) { // fix chance and miss rates
 		double chance =(double) (Math.random());
-		System.out.println("Chance: " + chance + "\nSpeed: " + defender.getSpeed() * .4f/100);
-		return (chance <= defender.getSpeed() * .4f/100);
+		System.out.println(chance);
+		System.out.println(defender.getSpeed() * rng/100);
+		System.out.println(rng);
+		return (chance <= defender.getSpeed() * rng/100);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if(!timer.isRunning()) {
-			damage = attacker.getDamage()-(int)(Math.random() * defender.getDefense() + 1);
-			miss = miss();
+			damage =  ((int)(attacker.getDamage() * Math.random() + (attacker.getDamage()*.30))) -
+					((int)(defender.getDefense() * Math.random() + 1));
+			miss = miss(.4f);
 			if(damage < 10)
 				damage = 10;
+			initialDEF = defender.getDefense();
+			initialATK = defender.getDamage();
+			initialSPD = defender.getSpeed();
 		}
 		
 		attacker.getAbilityPanel().setEnabled(false);
 		defender.getAbilityPanel().setEnabled(true);
-		Main.setDisplay(attacker.getName() + " used " + ability.getName() + ". ");
 		timer.start();
-		switch(ability.getType()) {
+		switch(type) {
 		case attack:
 			if(!miss) {
 				attack();
 				attacker.animate();
+				Main.setDisplay(attacker.getName() + " used " + ability.getName() + ".  It did " + damage + " damage.");
 			}
 			else {
 				Main.setDisplay(attacker.getName() + " used " + ability.getName() + "...The attack missed.");
@@ -89,10 +96,20 @@ public class AbilityButton extends JButton implements ActionListener{
 			condition();
 			break;
 		case buff:
+			Main.setDisplay(attacker.getName() + " used " + ability.getName() + ". " + attacker.getName() + "'s " + ability.getStatName() + " was increased");
 			buff();
 			break;
 		case debuff:
+			if(!miss) {
+			Main.setDisplay(attacker.getName() + " used " + ability.getName() + ". " + defender.getName() + "'s " + ability.getStatName() + " was decreased");
 			debuff();
+			}
+			else {
+				Main.setDisplay(attacker.getName() + " used " + ability.getName() + "...The attack missed.");
+				Main.end = 0;
+				switchTurns();
+				timer.stop();
+			}
 			break;
 		}
 	}
@@ -100,23 +117,39 @@ public class AbilityButton extends JButton implements ActionListener{
 	public void condition() {
 		switch(ability.getEffect()) {
 		case trueDMG:
-			damage = attacker.getMaxDamage() - defender.getDefense();
+			damage = attacker.getDamage();
+			System.out.println(damage);
 			attack();
+			attacker.animate();
 			break;
 		case turnLost:
-			Main.setDisplay(attacker.getName() + "used " + ability.getName() + ". " + defender.getName() + " loses its turn.");
+			miss = miss(.5f);
+			if(!miss) {
+			Main.setDisplay(attacker.getName() + " used " + ability.getName() + ". " + defender.getName() + " loses its turn.");
+			turnCounter = 0;
 			turnCounter++;
 			initialAttacker = attacker;
 			timer.stop();
+			}
+			else {
+				Main.setDisplay(attacker.getName() + " used " + ability.getName() + ". The attack missed" );
+			}
+				
 			break;
 		}
 	}
 	
 	public void attack() {
-		counter++; // damage counter
-		counter2++; // drip counter
-		defender.setHealth(defender.getHealth()-1);
-		defender.setHealthBar();
+		if(counter != damage) {
+			defender.setHealth(defender.getHealth()-1);
+			defender.setHealthBar();
+			counter++; // damage counter
+		}
+		if(counter2 < 25) {
+			attacker.setDrip(attacker.getDrip() + 1);
+			attacker.setDripBar();
+			counter2++; // drip counter
+		}
 		if(defender.getHealth() < 0) {
 			 defender.setHealth(0);
 			 defender.setHealthBar();
@@ -125,12 +158,9 @@ public class AbilityButton extends JButton implements ActionListener{
 			 counter = 0;
 			 counter2 = 0;
 		}
-		if(counter2 <= 25) {
-			attacker.setDrip(attacker.getDrip() + 1);
-			attacker.setDripBar();
-		}
-		if(counter == (damage)) {
+		if(counter == (damage) && counter2 >= 25) {
 			switchTurns();
+			attacker.returnOrgin();
 			timer.stop();
 			counter = 0;
 			counter2 = 0;
@@ -144,34 +174,26 @@ public class AbilityButton extends JButton implements ActionListener{
 	
 	public void buff() {
 		counter++;
-		switch(ability.getStat()){
-		case dmg:
-			if(counter > value) {
-				switchTurns();
-				timer.stop();
-				counter = 0;
+		if(counter > 20) {
+			switchTurns();
+			timer.stop();
+			counter = 0;
+		}
+		else {
+			switch(ability.getStat()){
+			case dmg:	
+				attacker.setDamage(attacker.getMaxDamage()+1);
 				break;
-			}
-			attacker.setDamage(attacker.getMaxDamage()+1);
-			break;
-		case spd:
-			if(counter > value) {
-				switchTurns();
-				timer.stop();
-				counter = 0;
+			case spd:
+				attacker.setSpeed(attacker.getSpeed()+1);
 				break;
-			}
-			attacker.setSpeed(attacker.getSpeed()+1);
-			break;
-		case def:
-			if(counter > value) {
-				switchTurns();
-				timer.stop();
-				counter = 0;
+			case def:
+				attacker.setDefense(attacker.getDefense()+1);
 				break;
+			case health:
+				attacker.setHealth(attacker.getHealth()+1);
+				attacker.setHealthBar();
 			}
-			attacker.setDefense(attacker.getDefense()+1);
-			break;
 		}
 			
 	}
@@ -180,14 +202,14 @@ public class AbilityButton extends JButton implements ActionListener{
 		counter++;
 		switch(ability.getStat()){
 		case dmg:
-			if(counter > value) {
+			if(counter > initialATK*.15) {
 				switchTurns();
 				timer.stop();
 				counter = 0;
 				break;
 			}
-			defender.setDamage(defender.getMaxDamage()-1);
-			if(defender.getMaxDamage() <= 10) {
+			defender.setDamage(defender.getDamage()-1);
+			if(defender.getDamage() <= 10) {
 				switchTurns();
 				defender.setDamage(10);
 				timer.stop();
@@ -196,7 +218,7 @@ public class AbilityButton extends JButton implements ActionListener{
 			}
 			break;
 		case spd:
-			if(counter > value) {
+			if(counter > initialSPD*.15) {
 				switchTurns();
 				timer.stop();
 				counter = 0;
@@ -212,7 +234,7 @@ public class AbilityButton extends JButton implements ActionListener{
 			}
 			break;
 		case def:
-			if(counter > value) {
+			if(counter > initialDEF*.15) {
 				switchTurns();
 				timer.stop();
 				counter = 0;

@@ -3,34 +3,37 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.ImageIcon;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.Timer;
-import javax.swing.ImageIcon;
 
 public abstract class Aggie implements ActionListener{
 	
 	private Sprite sprite;
   private ImageIcon agIcon;
-	private int xPos, yPos,size;
+	private int xPos, yPos;
+	protected int size;
 	private int xOrgin, yOrgin;
 	
 	protected final int attack = 0, //types of abilities
 			buff = 1,
 			debuff = 2,
 			condition = 3;
+	
+	private int xAni;
+	private int yAni;
 
 	protected final int dmg = 0, // stat that is changed for buff or debuff
 			spd = 1,
-			def = 2;
+			def = 2,
+			turnLost = 3,
+			trueDMG = 4,
+			hp = 5;
 	
-	protected int turnLost = 0,
-				  trueDMG = 1;
-	//lt
 	private final String name;
-	private int damage,
+	private int damage, 
 				speed,
 				defense,
 				health;
@@ -46,20 +49,22 @@ public abstract class Aggie implements ActionListener{
 	
 	protected Abilities ultimate;
 	
-	public Aggie(Sprite sprite, int size, 
-				String name, int damage, int speed, int defense, int health,ImageIcon agTIcon) {
+	public Aggie(Sprite sprite, String name, int damage, int speed, int defense, int health,ImageIcon agcon) {
 		this.sprite = sprite;
-		this.size = size;
+		size = 100;
 		this.name = name;
 		this.damage = damage;
 		this.speed = speed;
 		this.defense = defense;
-		this.health = health;
-    agIcon = agTIcon;
-		maxHealth = health;
+		this.health = health*10;
+    agIcon=agcon;
+		maxHealth = health*10;
 		HPbar = new JProgressBar(0,maxHealth);
 	}
-	
+	public ImageIcon getselIcon()
+  {
+    return agIcon;
+  }
 	public String getName() {
 		return name;
 	}
@@ -68,11 +73,6 @@ public abstract class Aggie implements ActionListener{
 		health = x;
 	}
 	
-  public ImageIcon getselIcon()
-  {
-    return agIcon;
-  }
-
 	public int getHealth() {
 		return health;
 	}
@@ -138,7 +138,7 @@ public abstract class Aggie implements ActionListener{
 	
 	public int getDamage() {
 		// TODO Auto-generated method stub
-		return (int)((Math.random()*(damage-(damage/3*2)) + (damage/3*2)));
+		return damage;
 	}
 	
 	public void setDamage(int x) {
@@ -175,12 +175,22 @@ public abstract class Aggie implements ActionListener{
 		return this.panel;
 	}
 	
+	public void setAnimations(int x, int y) {
+		xAni = x;
+		yAni = y;
+	}
+	
+	public void returnOrgin() {
+		xPos = xOrgin;
+		yPos = yOrgin;
+	}
+	
 	public void animate() {
-		xPos = xPos -1;
-		yPos = yPos +1;
-		if(xPos == xOrgin - 20)
+		xPos = xPos + xAni;
+		yPos = yPos + yAni;
+		if(xPos == xOrgin + (xAni * 20))
 			xPos = xOrgin;
-		if(yPos == yOrgin + 5)
+		if(yPos == yOrgin + (yAni * 5))
 			yPos = yOrgin;
 	}
 	
@@ -206,6 +216,10 @@ public abstract class Aggie implements ActionListener{
 		ultimate.getAbilityButton().addActionListener(this);
 		g.drawImage(sprite.getSprite(), xPos, yPos, size, size, null);
 		
+	}
+	
+	public void setSprite(String path) {
+		this.sprite = new Sprite(path);
 	}
 	
 	public void actionPerformed(ActionEvent e) {

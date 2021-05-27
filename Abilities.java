@@ -26,6 +26,7 @@ public class Abilities{
 		this.name = name;
 		this.type = type;
 		this.effect = effect;
+		this.stat = effect;
 		this.tooltip = tooltip;
 	}
 	
@@ -36,6 +37,19 @@ public class Abilities{
 	public int getStat() {
 		return stat;
 	}
+	public String getStatName() {
+		switch(stat) {
+		case 0:
+			return "damage";
+		case 1: 
+			return "speed";
+		case 2:
+			return "defense";
+		default: 
+			return "health";
+		}
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -59,3 +73,4 @@ public class Abilities{
 	}
 
 }
+

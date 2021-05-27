@@ -1,5 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -21,9 +23,6 @@ public class GameManager implements ActionListener{
 		this.p2 = p2;
 		timer = new Timer(1,this);
 		this.panel = panel;
-		
-		System.out.println(p2.getSpeed());
-		System.out.println(p1.getSpeed());
 		
 		if(p2.getSpeed() > p1.getSpeed()) 
 			turn = p2;
@@ -60,6 +59,7 @@ public class GameManager implements ActionListener{
 			
 			JOptionPane.showMessageDialog(panel, "Game over. " + winner.getName() + " Wins");
 			panel.setEnabled(false);
+			Main.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			Main.frame.dispose();
 		}
 	}
