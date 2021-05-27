@@ -261,14 +261,13 @@ Container c = new Container();
 		catch(Exception e) {}
 		
 		// params(Sprite, name, damage, speed, defense, health)
-		Aggie [] aggieList = {
-				new Medinasaur(new Sprite("Medinasaur1.png"),"Medinasaur",50,50,50,125,ag1Icon),
-				new Penisaur(new Sprite("Penisaur1.png"),"Penisaur",75,80,50,70,ag2Icon),
-				new Finality(new Sprite("Finality1.png"),"Finality",125, 75,15,60,ag5Icon),
-				new Charchimp(new Sprite("Charchimp1.png"),"Charchimp",100, 40, 60, 75,ag6Icon),
-				new Iceguin(new Sprite("Iceguin1.png"),"Iceguin",125, 40, 35, 75,ag4Icon),
-				new Pegasus(new Sprite("Pegasus1.png"),"Pegasus",70,50,70,80,ag3Icon)
-		};
+    Aggie a1 = new Medinasaur(new Sprite("Medinasaur1.png"),"Medinasaur",50,50,50,125,ag1Icon);
+    Aggie a2 = new Penisaur(new Sprite("Penisaur1.png"),"Penisaur",75,80,50,70,ag2Icon);
+    Aggie a3 = new Finality(new Sprite("Finality1.png"),"Finality",125, 75,15,60,ag5Icon);
+    Aggie a4 = new Charchimp(new Sprite("Charchimp1.png"),"Charchimp",100, 40, 60, 75,ag6Icon);
+    Aggie a5 = new Iceguin(new Sprite("Iceguin1.png"),"Iceguin",125, 40, 35, 75,ag4Icon);
+    Aggie a6 = new Pegasus(new Sprite("Pegasus1.png"),"Pegasus",70,50,70,80,ag3Icon);
+		Aggie [] aggieList = {a1,a2,a3,a4,a5,a6};
 		AggieLists = aggieList;
 
 		// params(Sprite, dimX, dimY, size, name, damage, speed, defense, health)
@@ -297,7 +296,7 @@ Container c = new Container();
 		frame.setSize(width,height);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
         
     new Main("aggieString");
 		
