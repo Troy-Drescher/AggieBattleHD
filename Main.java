@@ -303,14 +303,7 @@ Container c = new Container();
     }
 		if(!agselon)
     {
-      startbattle(player1,player2);
-    }
-
-	}
-
-  public static void startbattle(Aggie player1,Aggie player2)
-  {
-    frame = new JFrame();
+      frame = new JFrame();
 		frame.setSize(width,height);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -324,7 +317,9 @@ Container c = new Container();
 		
 		frame.add(new Main(player1, player2));
 		frame.setVisible(true);
-  }
+    }
+
+	}
 	
 	public static void setDisplay(String text) {
 		str = text;
