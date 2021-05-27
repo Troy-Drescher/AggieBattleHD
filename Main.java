@@ -41,6 +41,7 @@ import javax.swing.table.DefaultTableModel;
 public class Main extends JPanel implements ActionListener{ // Add panel on side that shows each creature stats
 
 	static JFrame frame,tableFrame,selectFrame,AggieFrame;
+  static boolean agselon=true;
 	static final int width = 410, height = 410;
 	private BufferedImage icon;
   static JLabel agIMG;
@@ -292,13 +293,28 @@ Container c = new Container();
 				i.setSprite(i.getName() + "2.png" );
 		}
 		
-		frame = new JFrame();
+        
+    new Main("aggieString");
+    
+    while(agselon)
+    {
+ System.out.println("test");
+
+    }
+		if(!agselon)
+    {
+      startbattle(player1,player2);
+    }
+
+	}
+
+  public static void startbattle(Aggie player1,Aggie player2)
+  {
+    frame = new JFrame();
 		frame.setSize(width,height);
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(true);
-        
-    new Main("aggieString");
 		
 		player1.setXpos(250);
 		player1.setYpos(20);
@@ -308,8 +324,7 @@ Container c = new Container();
 		
 		frame.add(new Main(player1, player2));
 		frame.setVisible(true);
-		
-	}
+  }
 	
 	public static void setDisplay(String text) {
 		str = text;
