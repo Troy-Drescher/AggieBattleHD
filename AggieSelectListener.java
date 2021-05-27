@@ -32,6 +32,32 @@ public class AggieSelectListener implements ActionListener{
     if(click == Main.nextAG)
     {
       Main.cAGG+=1;
+      if(Main.cAGG>Main.AggieLists.length-1)
+      {
+    	  Main.cAGG=0;
+      }
+      Main.agSelName.setText(Main.AggieLists[Main.cAGG].getName());
+      Main.agIMG.setIcon(Main.AggieLists[Main.cAGG].getselIcon());
+      Main.agselAB1 = Main.AggieLists[Main.cAGG].getAbilities()[0].getName();
+      Main.agselAB2 = Main.AggieLists[Main.cAGG].getAbilities()[1].getName();
+      Main.agselAB3 = Main.AggieLists[Main.cAGG].getAbilities()[2].getName();
+      Main.agselAB4 = Main.AggieLists[Main.cAGG].getAbilities()[3].getName();
+      Main.agselAB1t = Main.AggieLists[Main.cAGG].getAbilities()[0].getDesc();
+      Main.agselAB2t = Main.AggieLists[Main.cAGG].getAbilities()[1].getDesc();
+      Main.agselAB3t = Main.AggieLists[Main.cAGG].getAbilities()[2].getDesc();
+      Main.agselAB4t = Main.AggieLists[Main.cAGG].getAbilities()[3].getDesc();
+      Main.larea.setText(Main.agselAB1 + "\n" + Main.agselAB1t + "\n\n" + Main.agselAB2 + "\n" + Main.agselAB2t);
+      Main.Rarea.setText(Main.agselAB3 + "\n" + Main.agselAB3t + "\n\n" + Main.agselAB4 + "\n" + Main.agselAB4t);
+
+      //kl
+    }
+    if(click == Main.prevAG)
+    {
+      Main.cAGG= Main.cAGG-1;
+      if(Main.cAGG<0)
+      {
+    	  Main.cAGG=Main.AggieLists.length-1;
+      }
       Main.agSelName.setText(Main.AggieLists[Main.cAGG].getName());
       Main.agIMG.setIcon(Main.AggieLists[Main.cAGG].getselIcon());
       Main.agselAB1 = Main.AggieLists[Main.cAGG].getAbilities()[0].getName();
