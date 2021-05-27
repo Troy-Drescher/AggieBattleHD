@@ -67,6 +67,7 @@ public class GameManager implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+    
 		checkStatus();
 		if(p1.getHealth() > p2.getHealth())
 			winner = p1;
