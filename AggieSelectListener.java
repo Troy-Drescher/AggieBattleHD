@@ -52,7 +52,7 @@ public class AggieSelectListener implements ActionListener{
       Main.selectFrame.setVisible(false);
 
 
-      Main.agselon = true;
+      Main.agselon = false;
     }
     }
     
