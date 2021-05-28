@@ -217,6 +217,7 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     if(click == agselStart)
     {
       selectFrame.setVisible(false);
+      selectFrame.dispose();
       as3.AggieSelect2m();
 
     }
