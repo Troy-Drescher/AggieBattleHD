@@ -16,6 +16,7 @@ import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.URL;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -38,13 +39,17 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
 	static JFrame frame,tableFrame;
   static boolean agselon=true;
 	static final int width = 410, height = 410;
+
 	private BufferedImage icon;
-  static ImageIcon ag1Icon = new ImageIcon("MedinasaurIcon.png");
-  static ImageIcon ag2Icon = new ImageIcon("PenisaurIcon.png");
-  static ImageIcon ag3Icon = new ImageIcon("PegasusIcon.png");
-  static ImageIcon ag4Icon = new ImageIcon("IceguinIcon.png");
-  static ImageIcon ag5Icon = new ImageIcon("FinalityIcon.png");
-  static ImageIcon ag6Icon = new ImageIcon("CharChimpIcon.png");
+        public ClassLoader cl = this.getClass().getClassLoader();
+        URL sl = cl.getResource("MedinaSaurIcon.png");
+  public ImageIcon ag1Icon1 = new ImageIcon(sl);
+  public ImageIcon ag2Icon1 = new ImageIcon(cl.getResource("PenisaurIcon.png"));
+  public ImageIcon ag3Icon1 = new ImageIcon(cl.getResource("PegasusIcon.png"));
+  public ImageIcon ag4Icon1 = new ImageIcon(cl.getResource("IceguinIcon.png"));
+  public ImageIcon ag5Icon1 = new ImageIcon(cl.getResource("FinalityIcon.png"));
+  public ImageIcon ag6Icon1 = new ImageIcon(cl.getResource("CharChimpIcon.png"));
+  static ImageIcon ag1Icon,ag2Icon,ag3Icon,ag4Icon,ag5Icon,ag6Icon;
 /*
   private ImageIcon ag7Icon = new ImageIcon("SportBlack.jpeg");
   private ImageIcon ag8Icon = new ImageIcon("SportBlue.jpeg");
@@ -62,7 +67,15 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
 	static String str;
 	static int end;
 	private static Scanner kb = new Scanner(System.in);
-	
+	public Main(String stupidstupidshit)
+        {
+            Main.ag1Icon=ag1Icon1;
+            Main.ag2Icon=ag2Icon1;
+            Main.ag3Icon=ag3Icon1;
+            Main.ag4Icon=ag4Icon1;
+            Main.ag5Icon=ag5Icon1;
+            Main.ag6Icon=ag6Icon1;
+        }
 	public Main(Aggie player1, Aggie player2) {
 		player1.setXpos(250);
 		player1.setYpos(20);
@@ -155,7 +168,7 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
 			}
 		}
 		catch(Exception e) {}
-		
+		new Main("hello");
 		// params(Sprite, name, damage, speed, defense, health)
     Aggie a1 = new Medinasaur(new Sprite("Medinasaur1.png"),"Medinasaur",50,50,50,125,ag1Icon);
     Aggie a2 = new Penisaur(new Sprite("Penisaur1.png"),"Penisaur",75,80,50,70,ag2Icon);

@@ -44,7 +44,7 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     static String agselAB1,agselAB2,agselAB3,agselAB4;
     static JTextArea agSelName;
     static String agselAB1t,agselAB2t,agselAB3t,agselAB4t;
-    static ImageIcon ag1Icon = new ImageIcon("MedinasaurIcon.png");
+    static ImageIcon ag1Icon;
     static AggieSelect2 as3;
     
     
@@ -52,6 +52,7 @@ public class AggieSelectListener extends JPanel implements ActionListener{
 		// TODO Auto-generated constructor stub
     	as3=as4;
     	AggieLists=Main.AggieLists;
+        ag1Icon=Main.ag1Icon;
     	    CompoundBorder border = new CompoundBorder(
     	        new EmptyBorder(6, 6, 6, 6),     // 6 pixels on top, left, bottom, right
     	        new LineBorder(Color.black, 1)); // outside, 1 
