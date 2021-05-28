@@ -198,7 +198,6 @@ public class AggieSelect2 extends JPanel implements ActionListener {
 				}
 				Main.frame.add(new Main(player1, player2));
 				Main.frame.setVisible(true);
-        select2Frame.dispose();
 			}
 			
 		}
