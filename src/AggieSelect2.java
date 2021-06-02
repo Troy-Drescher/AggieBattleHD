@@ -115,7 +115,7 @@ public class AggieSelect2 extends JPanel implements ActionListener {
     	    c.add(hbox, BorderLayout.CENTER);
 
     	    select2Frame = new JFrame();
-    			select2Frame.setSize(Main.width+200,Main.height);
+    			select2Frame.setSize(Main.width+200,Main.height+200);
     			select2Frame.setLocationRelativeTo(null);
     	    select2Frame.setBackground(Color.BLACK);
     	    select2Frame.add(c);
