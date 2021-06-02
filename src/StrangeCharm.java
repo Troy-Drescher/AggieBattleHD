@@ -29,7 +29,7 @@ public class StrangeCharm extends Aggie{
 		Abilities subZero = new Abilities("Cobra Kick",debuff,dmg,"Venomous kick that decreases attack");
 		ab[2] = subZero;
 
-		ultimate = new Abilities("Quantum Quark Heal", condition,trueDMG,"Heals self"); 
+		ultimate = new Abilities("Quantum Quark Heal", buff,hp,"Heals self"); 
 		ab[3] = ultimate;
 		
 		return ab;

@@ -30,7 +30,7 @@ public class DreamReaper extends Aggie{
         //For conditions
         Abilities suffocate = new Abilities("nightmare", debuff,def,"Dream Reaper weakens his opponent with fear");
                     ab[2] = suffocate;
-                   ultimate = new Abilities("super health", condition,trueDMG,"Super ability, Dream Reaper gains 50% of remaining health"); 
+                   ultimate = new Abilities("super health", buff,hp,"Super ability, Dream Reaper gains 50% of remaining health"); 
 	ab[3] = ultimate;
 	return ab;
                 }
