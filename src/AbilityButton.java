@@ -27,6 +27,7 @@ public class AbilityButton extends JButton implements ActionListener{
 				health = 5;
 	
 	private int initialDEF,initialATK,initialSPD; // defender initial stats (used for debuffs)
+        private int initialDEF2,initialATK2,initialSPD2,initialHP;
 	
 	static int turnCounter;
 	static Aggie initialAttacker;
@@ -73,6 +74,10 @@ public class AbilityButton extends JButton implements ActionListener{
 			initialDEF = defender.getDefense();
 			initialATK = defender.getDamage();
 			initialSPD = defender.getSpeed();
+                        initialDEF2 = attacker.getDefense();
+			initialATK2 = attacker.getDamage();
+			initialSPD2 = attacker.getSpeed();
+                        initialHP=attacker.getHealth();
 		}
 		
 		attacker.getAbilityPanel().setEnabled(false);
@@ -123,7 +128,7 @@ public class AbilityButton extends JButton implements ActionListener{
 			attacker.animate();
 			break;
 		case turnLost:
-			miss = miss(.5f);
+			miss = miss(.4f);
 			if(!miss) {
 			Main.setDisplay(attacker.getName() + " used " + ability.getName() + ". " + defender.getName() + " loses its turn.");
 			turnCounter = 0;
@@ -181,18 +186,56 @@ public class AbilityButton extends JButton implements ActionListener{
 		}
 		else {
 			switch(ability.getStat()){
-			case dmg:	
-				attacker.setDamage(attacker.getMaxDamage()+1);
+			case dmg:
+                            if(counter > initialATK2*.15) {
+				switchTurns();
+				timer.stop();
+				counter = 0;
+				break;
+			}
+                        attacker.setDamage(attacker.getMaxDamage()+1);
 				break;
 			case spd:
+                            if(counter > initialSPD2*.15) {
+				switchTurns();
+				timer.stop();
+				counter = 0;
+				break;
+			}
 				attacker.setSpeed(attacker.getSpeed()+1);
 				break;
 			case def:
+                            if(counter > initialDEF*.15) {
+				switchTurns();
+				timer.stop();
+				counter = 0;
+				break;
+			}
 				attacker.setDefense(attacker.getDefense()+1);
 				break;
 			case health:
+                            if(initialHP > 100)
+                            {
+                            if(counter > initialHP*.2) {
+				switchTurns();
+				timer.stop();
+				counter = 0;
+				break;
+			}
 				attacker.setHealth(attacker.getHealth()+1);
 				attacker.setHealthBar();
+                            } else
+                            {
+                                if(counter > initialHP*2) {
+				switchTurns();
+				timer.stop();
+				counter = 0;
+				break;
+			}
+				attacker.setHealth(attacker.getHealth()+1);
+				attacker.setHealthBar();
+                            }
+                            
 			}
 		}
 			
