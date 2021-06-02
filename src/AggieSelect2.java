@@ -168,7 +168,10 @@ public class AggieSelect2 extends JPanel implements ActionListener {
 			if(a1N.equals("")||a2N.equals(""))
 			{
 				JOptionPane.showMessageDialog(AggieSelect2.this, "please select an Aggie");
-			} else
+			} else if(a1N.equals(a2N))
+                        {
+                            JOptionPane.showMessageDialog(AggieSelect2.this, "please select Different Aggies");
+                        }else
 			{
 				for(Aggie ag8 : agList)
 				{

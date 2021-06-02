@@ -55,7 +55,9 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     	as3=as4;
     	AggieLists=Main.AggieLists;
         ag1Icon=Main.ag1Icon;
-        AggieCont = new String[] {"Mr. Medina","Jonathan Nguyen","Munir Khan","Troy Drescher","Troy Drescher","Sarbjeet Kaur","Mr. Heinrich","Mr. Ivy"};
+        AggieCont = new String[] {"Mr. Medina","Jonathan Nguyen","Munir Khan","Troy Drescher"
+                ,"Troy Drescher","Sarbjeet Kaur","Mr. Heinrich","Mr. Ivy","Ravnoor Dwaliwal",
+        "Christian Patino"};
     	    CompoundBorder border = new CompoundBorder(
     	        new EmptyBorder(6, 6, 6, 6),     // 6 pixels on top, left, bottom, right
     	        new LineBorder(Color.black, 1)); // outside, 1 
