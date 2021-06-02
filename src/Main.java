@@ -51,7 +51,8 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
   public ImageIcon ag6Icon1 = new ImageIcon(cl.getResource("CharChimpIcon.png"));
   public ImageIcon ag7Icon1 = new ImageIcon(cl.getResource("StrangeCharmIcon.png"));
   public ImageIcon ag8Icon1 = new ImageIcon(cl.getResource("CorvakaIcon.png"));
-  static ImageIcon ag1Icon,ag2Icon,ag3Icon,ag4Icon,ag5Icon,ag6Icon,ag7Icon,ag8Icon;
+  public ImageIcon ag9Icon1 = new ImageIcon(cl.getResource("AquadosIcon.png"));
+  static ImageIcon ag1Icon,ag2Icon,ag3Icon,ag4Icon,ag5Icon,ag6Icon,ag7Icon,ag8Icon,ag9Icon;
 /*
   private ImageIcon ag7Icon = new ImageIcon("SportBlack.jpeg");
   private ImageIcon ag8Icon = new ImageIcon("SportBlue.jpeg");
@@ -79,6 +80,7 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
             Main.ag6Icon=ag6Icon1;
             Main.ag7Icon=ag7Icon1;
             Main.ag8Icon=ag8Icon1;
+            Main.ag9Icon=ag9Icon1;
         }
 	public Main(Aggie player1, Aggie player2) {
 		player1.setXpos(250);
@@ -182,7 +184,8 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
     Aggie a6 = new Pegasus(new Sprite("Pegasus1.png"),"Pegasus",70,50,70,80,ag3Icon);
     Aggie a7 = new StrangeCharm(new Sprite("StrangeCharm1.png"),"StrangeCharm",80,60,60,75,ag7Icon);
     Aggie a8 = new Corvaka(new Sprite("Corvaka1.png"),"Corvaka",45,60,70,100,ag8Icon);
-		Aggie [] aggieList = {a1,a2,a3,a4,a5,a6,a7,a8};
+    Aggie a9 = new Corvaka(new Sprite("Aquados1.png"),"Aquados",75,60,65,75,ag9Icon);
+		Aggie [] aggieList = {a1,a2,a3,a4,a5,a6,a7,a8,a9};
 		AggieLists = aggieList;
 		AggieSelect2 as2 = new AggieSelect2();
 		AggieSelectListener asl = new AggieSelectListener();
