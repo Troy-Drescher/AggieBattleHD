@@ -30,8 +30,8 @@ public class Aquados extends Aggie{
         //For conditions
         Abilities suffocate = new Abilities("Suffocate", condition,turnLost,"Opponent loses a turn to catch its breath");
                     ab[2] = suffocate;
-                    Abilities iceBeam = new Abilities("iceBeam", condition,trueDMG,"generates three tons of ice and shoots it in a continuous beam at the opponent, severely damaging it"); 
-	ab[3] = iceBeam;
+                    ultimate = new Abilities("iceBeam", condition,trueDMG,"generates three tons of ice and shoots it in a continuous beam at the opponent, severely damaging it"); 
+	ab[3] = ultimate;
 	return ab;
                 }
 
