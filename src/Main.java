@@ -38,7 +38,7 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
 
 	static JFrame frame,tableFrame;
   static boolean agselon=true;
-	static final int width = 410, height = 410;
+	static final int width = 430, height = 430;
 
 	private BufferedImage icon;
         public ClassLoader cl = this.getClass().getClassLoader();
