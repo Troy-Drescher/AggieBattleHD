@@ -115,7 +115,7 @@ public class AggieSelect2 extends JPanel implements ActionListener {
     	    c.add(hbox, BorderLayout.CENTER);
 
     	    select2Frame = new JFrame();
-    			select2Frame.setSize(Main.width+200,Main.height);
+    			select2Frame.setSize(Main.width+200,Main.height+200);
     			select2Frame.setLocationRelativeTo(null);
     	    select2Frame.setBackground(Color.BLACK);
     	    select2Frame.add(c);
@@ -168,7 +168,10 @@ public class AggieSelect2 extends JPanel implements ActionListener {
 			if(a1N.equals("")||a2N.equals(""))
 			{
 				JOptionPane.showMessageDialog(AggieSelect2.this, "please select an Aggie");
-			} else
+			} else if(a1N.equals(a2N))
+                        {
+                            JOptionPane.showMessageDialog(AggieSelect2.this, "please select Different Aggies");
+                        }else
 			{
 				for(Aggie ag8 : agList)
 				{
@@ -198,7 +201,6 @@ public class AggieSelect2 extends JPanel implements ActionListener {
 				}
 				Main.frame.add(new Main(player1, player2));
 				Main.frame.setVisible(true);
-        select2Frame.dispose();
 			}
 			
 		}

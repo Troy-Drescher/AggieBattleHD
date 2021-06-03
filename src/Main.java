@@ -49,7 +49,14 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
   public ImageIcon ag4Icon1 = new ImageIcon(cl.getResource("IceguinIcon.png"));
   public ImageIcon ag5Icon1 = new ImageIcon(cl.getResource("FinalityIcon.png"));
   public ImageIcon ag6Icon1 = new ImageIcon(cl.getResource("CharChimpIcon.png"));
-  static ImageIcon ag1Icon,ag2Icon,ag3Icon,ag4Icon,ag5Icon,ag6Icon;
+  public ImageIcon ag7Icon1 = new ImageIcon(cl.getResource("StrangeCharmIcon.png"));
+  public ImageIcon ag8Icon1 = new ImageIcon(cl.getResource("CorvakaIcon.png"));
+  public ImageIcon ag9Icon1 = new ImageIcon(cl.getResource("AquadosIcon.png"));
+  public ImageIcon ag10Icon1 = new ImageIcon(cl.getResource("GhoullyIcon.png"));
+  public ImageIcon ag11Icon1 = new ImageIcon(cl.getResource("MemorraIcon.png"));
+  public ImageIcon ag12Icon1 = new ImageIcon(cl.getResource("DreamReaperIcon.png"));
+  public ImageIcon ag13Icon1 = new ImageIcon(cl.getResource("RafushiqiIcon.png"));
+  static ImageIcon ag1Icon,ag2Icon,ag3Icon,ag4Icon,ag5Icon,ag6Icon,ag7Icon,ag8Icon,ag9Icon,ag10Icon,ag11Icon,ag12Icon,ag13Icon;
 /*
   private ImageIcon ag7Icon = new ImageIcon("SportBlack.jpeg");
   private ImageIcon ag8Icon = new ImageIcon("SportBlue.jpeg");
@@ -75,6 +82,13 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
             Main.ag4Icon=ag4Icon1;
             Main.ag5Icon=ag5Icon1;
             Main.ag6Icon=ag6Icon1;
+            Main.ag7Icon=ag7Icon1;
+            Main.ag8Icon=ag8Icon1;
+            Main.ag9Icon=ag9Icon1;
+            Main.ag10Icon=ag10Icon1;
+            Main.ag11Icon=ag11Icon1;
+            Main.ag12Icon=ag12Icon1;
+            Main.ag13Icon=ag13Icon1;
         }
 	public Main(Aggie player1, Aggie player2) {
 		player1.setXpos(250);
@@ -173,10 +187,17 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
     Aggie a1 = new Medinasaur(new Sprite("Medinasaur1.png"),"Medinasaur",50,50,50,125,ag1Icon);
     Aggie a2 = new Penisaur(new Sprite("Penisaur1.png"),"Penisaur",75,80,50,70,ag2Icon);
     Aggie a3 = new Finality(new Sprite("Finality1.png"),"Finality",125, 75,15,60,ag5Icon);
-    Aggie a4 = new Charchimp(new Sprite("Charchimp1.png"),"Charchimp",100, 40, 60, 75,ag6Icon);
+    Aggie a4 = new Charchimp(new Sprite("CharChimp1.png"),"CharChimp",100, 40, 60, 75,ag6Icon);
     Aggie a5 = new Iceguin(new Sprite("Iceguin1.png"),"Iceguin",125, 40, 35, 75,ag4Icon);
     Aggie a6 = new Pegasus(new Sprite("Pegasus1.png"),"Pegasus",70,50,70,80,ag3Icon);
-		Aggie [] aggieList = {a1,a2,a3,a4,a5,a6};
+    Aggie a7 = new StrangeCharm(new Sprite("StrangeCharm1.png"),"StrangeCharm",80,60,60,75,ag7Icon);
+    Aggie a8 = new Corvaka(new Sprite("Corvaka1.png"),"Corvaka",45,60,70,100,ag8Icon);
+    Aggie a9 = new Aquados(new Sprite("Aquados1.png"),"Aquados",75,60,65,75,ag9Icon);
+    Aggie a10 = new Ghoully(new Sprite("Ghoully1.png"),"Ghoully",75,60,70,70,ag10Icon);
+    Aggie a11 = new Memorra(new Sprite("Memorra1.png"),"Memorra",70,60,65,80,ag11Icon);
+    Aggie a12 = new DreamReaper(new Sprite("DreamReaper1.png"),"DreamReaper",70,60,65,80,ag12Icon);
+    Aggie a13 = new Rafushiqi(new Sprite("Rafushiqi1.png"),"Rafushiqi",105,60,46,64,ag13Icon);
+		Aggie [] aggieList = {a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12,a13};
 		AggieLists = aggieList;
 		AggieSelect2 as2 = new AggieSelect2();
 		AggieSelectListener asl = new AggieSelectListener();

@@ -41,7 +41,9 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     static int cAGG=0;
     static JButton nextAG,prevAG,agselStart;
     static Aggie[] AggieLists;
+    static String[] AggieCont;
     static String agselAB1,agselAB2,agselAB3,agselAB4;
+    static String agselcont;
     static JTextArea agSelName;
     static String agselAB1t,agselAB2t,agselAB3t,agselAB4t;
     static ImageIcon ag1Icon;
@@ -53,6 +55,9 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     	as3=as4;
     	AggieLists=Main.AggieLists;
         ag1Icon=Main.ag1Icon;
+        AggieCont = new String[] {"Mr. Medina","Jonathan Nguyen","Munir Khan","Troy Drescher"
+                ,"Troy Drescher","Sarbjeet Kaur","Mr. Heinrich","Mr. Ivy","Ravnoor Dwaliwal",
+        "Christian Patino","Steven Mejia","Justin Weber","Ethan Fulton","Agatha Smith"};
     	    CompoundBorder border = new CompoundBorder(
     	        new EmptyBorder(6, 6, 6, 6),     // 6 pixels on top, left, bottom, right
     	        new LineBorder(Color.black, 1)); // outside, 1 
@@ -82,7 +87,7 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     	    
     	//did stuff
     	JPanel agimgseltext = new JPanel();
-    	  agSelName = new JTextArea("Medinasaur" + "\nStats: ATK:" + AggieLists[cAGG].getDamage() + " DEF:" +
+    	  agSelName = new JTextArea("Medinasaur" + "  Contributed By: " + AggieCont[cAGG] + "\nStats: ATK:" + AggieLists[cAGG].getDamage() + " DEF:" +
     	AggieLists[cAGG].getDefense() +" SPD:" + AggieLists[cAGG].getSpeed() + " HP:" + AggieLists[cAGG].getMaxHP());
     	  agSelName.setEditable(false);
     	  agimgseltext.add(agSelName);
@@ -175,7 +180,7 @@ public class AggieSelectListener extends JPanel implements ActionListener{
       {
     	  cAGG=0;
       }
-      agSelName.setText(AggieLists[cAGG].getName() + "\nStats: ATK:" + AggieLists[cAGG].getDamage() + " DEF:" +
+      agSelName.setText(AggieLists[cAGG].getName() + "  Contributed By: " + AggieCont[cAGG] + "\nStats: ATK:" + AggieLists[cAGG].getDamage() + " DEF:" +
     	    	AggieLists[cAGG].getDefense() +" SPD:" + AggieLists[cAGG].getSpeed() + " HP:" + AggieLists[cAGG].getMaxHP());
       agIMG.setIcon(AggieLists[cAGG].getselIcon());
       agselAB1 = AggieLists[cAGG].getAbilities()[0].getName();
@@ -198,7 +203,7 @@ public class AggieSelectListener extends JPanel implements ActionListener{
       {
     	  cAGG=AggieLists.length-1;
       }
-      agSelName.setText(AggieLists[cAGG].getName() + "\nStats: ATK:" + AggieLists[cAGG].getDamage() + " DEF:" +
+      agSelName.setText(AggieLists[cAGG].getName() + "  Contributed By: " + AggieCont[cAGG] + "\nStats: ATK:" + AggieLists[cAGG].getDamage() + " DEF:" +
   	    	AggieLists[cAGG].getDefense() +" SPD:" + AggieLists[cAGG].getSpeed() + " HP:" + AggieLists[cAGG].getMaxHP());
       agIMG.setIcon(AggieLists[cAGG].getselIcon());
       agselAB1 = AggieLists[cAGG].getAbilities()[0].getName();
@@ -217,7 +222,6 @@ public class AggieSelectListener extends JPanel implements ActionListener{
     if(click == agselStart)
     {
       selectFrame.setVisible(false);
-      selectFrame.dispose();
       as3.AggieSelect2m();
 
     }
