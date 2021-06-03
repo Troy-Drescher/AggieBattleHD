@@ -187,7 +187,7 @@ public class Main extends JPanel implements ActionListener{ // Add panel on side
     Aggie a1 = new Medinasaur(new Sprite("Medinasaur1.png"),"Medinasaur",50,50,50,125,ag1Icon);
     Aggie a2 = new Penisaur(new Sprite("Penisaur1.png"),"Penisaur",75,80,50,70,ag2Icon);
     Aggie a3 = new Finality(new Sprite("Finality1.png"),"Finality",125, 75,15,60,ag5Icon);
-    Aggie a4 = new Charchimp(new Sprite("Charchimp1.png"),"Charchimp",100, 40, 60, 75,ag6Icon);
+    Aggie a4 = new Charchimp(new Sprite("CharChimp1.png"),"CharChimp",100, 40, 60, 75,ag6Icon);
     Aggie a5 = new Iceguin(new Sprite("Iceguin1.png"),"Iceguin",125, 40, 35, 75,ag4Icon);
     Aggie a6 = new Pegasus(new Sprite("Pegasus1.png"),"Pegasus",70,50,70,80,ag3Icon);
     Aggie a7 = new StrangeCharm(new Sprite("StrangeCharm1.png"),"StrangeCharm",80,60,60,75,ag7Icon);
